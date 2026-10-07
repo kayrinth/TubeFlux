@@ -141,6 +141,8 @@
 @media (max-width:760px){ .plates{grid-template-columns:1fr} }
 .plate-label{display:block; color:var(--muted); margin-bottom:11px}
 .plate-note{margin:13px 0 0; color:var(--muted); font-size:14.5px; line-height:1.55}
+.removal{margin-top:clamp(30px,4.4vw,52px); padding-top:clamp(24px,3vw,34px); border-top:1px solid var(--rule)}
+.removal .plates{margin-top:18px}
 .steps{list-style:none; margin:clamp(26px,4vw,42px) 0 0; padding:0}
 .steps li{
   display:grid; grid-template-columns:3em minmax(0,1fr); gap:18px; align-items:baseline;
@@ -338,6 +340,33 @@ code{
 
     <p class="aside">In a hurry: <code>tubeflux "&lt;link&gt;" -f audio -q 320</code> skips the menu.
        Prefer a browser? <code>tubeflux --serve</code> opens the same board on your own machine.</p>
+
+    <div class="removal">
+      <h3 class="lbl door-rule">Remove it</h3>
+      <div class="plates">
+        <div>
+          <span class="lbl plate-label">macOS and Linux</span>
+          <div class="cmd">
+            <button class="copy" type="button" data-copy="cmdRmUnix" data-done="0">Copy</button>
+<pre id="cmdRmUnix"><i>$</i> npm uninstall -g tubeflux
+<i>$</i> rm -rf ~/.cache/tubeflux</pre>
+          </div>
+        </div>
+        <div>
+          <span class="lbl plate-label">Windows</span>
+          <div class="cmd">
+            <button class="copy" type="button" data-copy="cmdRmWin" data-done="0">Copy</button>
+<pre id="cmdRmWin"><i>&gt;</i> npm uninstall -g tubeflux
+<i>&gt;</i> rmdir /s /q %USERPROFILE%\.cache\tubeflux</pre>
+          </div>
+        </div>
+      </div>
+      <p class="plate-note">The <code>-g</code> matters: without it npm looks for TubeFlux in the folder
+         you are standing in, finds nothing, and reports success. The second line clears the yt-dlp
+         binary TubeFlux fetched for you, about 35&nbsp;MB. On macOS and Linux add <code>sudo</code> if
+         the uninstall is refused. Used <code>npx</code> instead? Nothing was installed, so there is
+         nothing to remove.</p>
+    </div>
   </section>
 
   <section class="gate">
